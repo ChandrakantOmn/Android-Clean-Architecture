@@ -85,13 +85,17 @@ class CommitsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        commitsViewModel.onCommits.observe(viewLifecycleOwner) { resource ->
+        commitsViewModel.onCommits.observe(viewLifecycleOwner) { result ->
 
-            when (resource) {
+            when (result) {
 
-                is Resource.Success ->  commitsAdapter?.submitList(resource.data)
+                is Resource.Success -> commitsAdapter?.submitList(result.data)
 
-                is Resource.Error -> Toast.makeText(context, resource.errorMessage, Toast.LENGTH_SHORT).show()
+                is Resource.Error -> Toast.makeText(
+                    context,
+                    result.errorMessage,
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
 
@@ -100,5 +104,4 @@ class CommitsFragment : BaseFragment() {
         }
 
     }
-
 }
