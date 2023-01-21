@@ -54,15 +54,15 @@ class LoginActivity : BaseActivity() {
 
     private fun initViewModel() {
 
-        loginViewModel.onUser.observe(this) { resource ->
+        loginViewModel.onUser.observe(this) { result ->
 
-            when (resource) {
+            when (result) {
 
-                is Resource.Success -> openUserInfoPage(resource.data?.login ?: return@observe)
+                is Resource.Success -> openUserInfoPage(result.data?.login ?: return@observe)
 
                 is Resource.Error -> Toast.makeText(
                     this@LoginActivity,
-                    resource.errorMessage,
+                    result.errorMessage,
                     Toast.LENGTH_SHORT
                 ).show()
 

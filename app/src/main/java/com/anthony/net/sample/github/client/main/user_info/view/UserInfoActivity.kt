@@ -64,15 +64,15 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private fun initViewModel() {
 
-        userInfoViewModel.onRepositories.observe(this) { resource ->
+        userInfoViewModel.onRepositories.observe(this) { result ->
 
-            when (resource) {
+            when (result) {
 
-                is Resource.Success -> repositoriesAdapter?.submitList(resource.data)
+                is Resource.Success -> repositoriesAdapter?.submitList(result.data)
 
                 is Resource.Error -> Toast.makeText(
                     this@UserInfoActivity,
-                    resource.errorMessage,
+                    result.errorMessage,
                     Toast.LENGTH_SHORT
                 ).show()
 

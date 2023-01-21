@@ -86,15 +86,15 @@ class CollaboratorsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner) { resource ->
+        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner) { result ->
 
-            when (resource) {
+            when (result) {
 
-                is Resource.Success -> collaboratorsAdapter?.submitList(resource.data)
+                is Resource.Success -> collaboratorsAdapter?.submitList(result.data)
 
                 is Resource.Error -> Toast.makeText(
                     context,
-                    resource.errorMessage,
+                    result.errorMessage,
                     Toast.LENGTH_SHORT
                 ).show()
 
