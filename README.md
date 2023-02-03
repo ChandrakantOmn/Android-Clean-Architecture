@@ -2,8 +2,9 @@
 
 ### **Main**:
 - MVVM 
-- Retrofit 
+- Retrofit2 
 - Coroutines 
+- kotlin flow
 
 ### **Others**:
 - ViewBinding 
