@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anthony.net.sample.github.client.databinding.ItemCommitBinding
-import com.anthony.net.sample.github.client.model.user_info.Commit
+import com.anthony.net.sample.github.client.dto.user_info.Commit
 
 class CommitsAdapter(
     commitItemCallback: CommitItemCallback,

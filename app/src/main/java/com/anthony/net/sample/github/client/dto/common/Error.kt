@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.client.model.common
+package com.anthony.net.sample.github.client.dto.common
 
 import kotlinx.serialization.Serializable
 

@@ -1,25 +1,27 @@
-package com.anthony.net.sample.github.client.repository.user_info
+package com.anthony.net.sample.github.client.model.repository.user_info
 
-import com.anthony.net.sample.github.client.model.common.Error
-import com.anthony.net.sample.github.client.model.user_info.Commit
+import com.anthony.net.sample.github.client.dto.common.Error
+import com.anthony.net.sample.github.client.dto.user_info.Collaborator
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
-import com.anthony.net.sample.github.client.service.user_info.CommitsService
+import com.anthony.net.sample.github.client.service.user_info.CollaboratorsService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import retrofit2.HttpException
 import java.io.IOException
 
-class CommitsRepository(private val commitsService: CommitsService) {
+class CollaboratorsRepository(private val collaboratorsService: CollaboratorsService) {
 
-    suspend fun getCommits(
-        userName: String, repoName: String
-    ): Flow<Resource<List<Commit>>> = flow {
+    suspend fun getCollaborators(
+        owner: String, repo: String
+    ): Flow<Resource<List<Collaborator>>> = flow {
 
         try {
 
-            val data = commitsService.getCommits(userName, repoName)
+            val data = collaboratorsService.getCollaborators(
+                owner, repo
+            )
 
             emit(Resource.Success(data))
 

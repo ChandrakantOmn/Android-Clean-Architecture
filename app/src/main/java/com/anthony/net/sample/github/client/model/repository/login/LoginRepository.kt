@@ -1,7 +1,7 @@
-package com.anthony.net.sample.github.client.repository.login
+package com.anthony.net.sample.github.client.model.repository.login
 
-import com.anthony.net.sample.github.client.model.common.Error
-import com.anthony.net.sample.github.client.model.common.User
+import com.anthony.net.sample.github.client.dto.common.Error
+import com.anthony.net.sample.github.client.dto.common.User
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
 import com.anthony.net.sample.github.client.service.login.LoginService

@@ -1,6 +1,6 @@
-package com.anthony.net.sample.github.client.model.login
+package com.anthony.net.sample.github.client.dto.login
 
-import com.anthony.net.sample.github.client.model.common.License
+import com.anthony.net.sample.github.client.dto.common.License
 import kotlinx.serialization.Serializable
 
 @Serializable
