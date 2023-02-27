@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCollaboratorBinding
 import com.anthony.net.sample.github.client.dto.user_info.Collaborator
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
 
 class CollaboratorsAdapter(
     collaboratorItemCallback: CollaboratorItemCallback,
@@ -32,12 +31,11 @@ class CollaboratorsAdapter(
 
         fun bind(item: Collaborator) {
 
-            val context = itemView.context
-
-            Glide.with(context).load(item.avatar_url)
-                .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                .placeholder(R.drawable.git_icon)
-                .into(viewBinding.collaboratorImg)
+            viewBinding.collaboratorImg.load(item.avatar_url) {
+                crossfade(true)
+                placeholder(R.drawable.git_icon)
+                transformations(CircleCropTransformation())
+            }
 
             viewBinding.collaboratorName.text = item.login
 
