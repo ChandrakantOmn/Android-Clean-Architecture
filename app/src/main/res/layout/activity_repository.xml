@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_grey_300"
-    tools:context=".main.user_info.view.RepositoryActivity">
+    tools:context="com.anthony.net.sample.github.presentation.user_info.view.RepositoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"

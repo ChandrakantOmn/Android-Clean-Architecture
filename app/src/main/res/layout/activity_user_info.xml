@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.user_info.view.UserInfoActivity">
+    tools:context="com.anthony.net.sample.github.presentation.user_info.view.UserInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/userInfoActionBar"
