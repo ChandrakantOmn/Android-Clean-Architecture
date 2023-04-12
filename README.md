@@ -3,7 +3,7 @@
 # Introduction
 This is a sample github app that how to architect an android application using clean architecture.
 
-## Languages, libraries and tools used
+## Architecture, Languages, libraries and tools used
 - MVVM
 - Kotlin
 - Kotlin Flow
