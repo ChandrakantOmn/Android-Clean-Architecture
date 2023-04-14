@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
-import com.anthony.net.sample.github.data.remote.Resource
 import com.anthony.net.sample.github.presentation.base.BaseActivity
 import com.anthony.net.sample.github.presentation.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.presentation.user_info.adapter.RepositoryItemCallback
@@ -64,15 +63,17 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private fun initViewModel() {
 
-        userInfoViewModel.onRepositories.observe(this) { result ->
+        userInfoViewModel.onRepositories.observe(this) { userInfoState ->
 
-            when (result) {
+            if (userInfoState.repositories != null) {
 
-                is Resource.Success -> repositoriesAdapter?.submitList(result.data)
+                repositoriesAdapter?.submitList(userInfoState.repositories)
 
-                is Resource.Error -> Toast.makeText(
+            } else {
+
+                Toast.makeText(
                     this@UserInfoActivity,
-                    result.errorMessage,
+                    userInfoState.error,
                     Toast.LENGTH_SHORT
                 ).show()
 

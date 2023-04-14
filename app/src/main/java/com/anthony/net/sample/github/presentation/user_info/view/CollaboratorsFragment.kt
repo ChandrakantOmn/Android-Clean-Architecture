@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.databinding.FragmentCollaboratorsBinding
-import com.anthony.net.sample.github.data.remote.Resource
 import com.anthony.net.sample.github.presentation.base.BaseFragment
 import com.anthony.net.sample.github.presentation.user_info.adapter.CollaboratorItemCallback
 import com.anthony.net.sample.github.presentation.user_info.adapter.CollaboratorsAdapter
@@ -86,15 +85,17 @@ class CollaboratorsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner) { result ->
+        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner) { collaboratorsState ->
 
-            when (result) {
+            if (collaboratorsState.collaborators != null) {
 
-                is Resource.Success -> collaboratorsAdapter?.submitList(result.data)
+                collaboratorsAdapter?.submitList(collaboratorsState.collaborators)
 
-                is Resource.Error -> Toast.makeText(
+            } else {
+
+                Toast.makeText(
                     context,
-                    result.errorMessage,
+                    collaboratorsState.error,
                     Toast.LENGTH_SHORT
                 ).show()
 

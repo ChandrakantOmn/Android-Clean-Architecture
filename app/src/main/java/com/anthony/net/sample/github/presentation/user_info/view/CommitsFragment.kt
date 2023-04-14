@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.databinding.FragmentCommitsBinding
-import com.anthony.net.sample.github.data.remote.Resource
 import com.anthony.net.sample.github.presentation.base.BaseFragment
 import com.anthony.net.sample.github.presentation.user_info.adapter.CommitItemCallback
 import com.anthony.net.sample.github.presentation.user_info.adapter.CommitsAdapter
@@ -82,15 +81,17 @@ class CommitsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        commitsViewModel.onCommits.observe(viewLifecycleOwner) { result ->
+        commitsViewModel.onCommits.observe(viewLifecycleOwner) { commitsState ->
 
-            when (result) {
+            if (commitsState.commits != null) {
 
-                is Resource.Success -> commitsAdapter?.submitList(result.data)
+                commitsAdapter?.submitList(commitsState.commits)
 
-                is Resource.Error -> Toast.makeText(
+            } else {
+
+                Toast.makeText(
                     context,
-                    result.errorMessage,
+                    commitsState.error,
                     Toast.LENGTH_SHORT
                 ).show()
 

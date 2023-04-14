@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ActivityLoginBinding
-import com.anthony.net.sample.github.data.remote.Resource
 import com.anthony.net.sample.github.presentation.base.BaseActivity
 import com.anthony.net.sample.github.presentation.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.presentation.user_info.view.UserInfoActivity
@@ -54,15 +53,19 @@ class LoginActivity : BaseActivity() {
 
     private fun initViewModel() {
 
-        loginViewModel.onUser.observe(this) { result ->
+        loginViewModel.onUser.observe(this) { loginState ->
 
-            when (result) {
+            if (loginState.user != null) {
 
-                is Resource.Success -> openUserInfoPage(result.data?.login ?: return@observe)
+                val login = loginState.user.login
 
-                is Resource.Error -> Toast.makeText(
+                openUserInfoPage(login)
+
+            } else {
+
+                Toast.makeText(
                     this@LoginActivity,
-                    result.errorMessage,
+                    loginState.error,
                     Toast.LENGTH_SHORT
                 ).show()
 
