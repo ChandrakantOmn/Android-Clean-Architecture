@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 class CollaboratorsViewModel(private val collaboratorsUseCase: CollaboratorsUseCase) :
     BaseViewModel() {
 
-    private val _onCollaborators by lazy { MutableLiveData<CollaboratorsState>() }
+    private val _onCollaboratorsState by lazy { MutableLiveData<CollaboratorsState>() }
 
-    val onCollaborators: LiveData<CollaboratorsState> = _onCollaborators
+    val onCollaboratorsState: LiveData<CollaboratorsState> = _onCollaboratorsState
 
     fun getCollaborators(userName: String, repoName: String) {
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
@@ -23,10 +23,11 @@ class CollaboratorsViewModel(private val collaboratorsUseCase: CollaboratorsUseC
 
                 when (result) {
 
-                    is Resource.Success -> _onCollaborators.value = CollaboratorsState(result.data)
+                    is Resource.Success -> _onCollaboratorsState.value =
+                        CollaboratorsState.Success(result.data)
 
-                    is Resource.Error -> _onCollaborators.value =
-                        CollaboratorsState(null, result.errorMessage)
+                    is Resource.Error -> _onCollaboratorsState.value =
+                        CollaboratorsState.Error(result.errorMessage)
 
                 }
 

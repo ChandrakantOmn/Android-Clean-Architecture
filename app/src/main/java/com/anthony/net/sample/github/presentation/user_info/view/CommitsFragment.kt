@@ -10,6 +10,7 @@ import com.anthony.net.sample.github.client.databinding.FragmentCommitsBinding
 import com.anthony.net.sample.github.presentation.base.BaseFragment
 import com.anthony.net.sample.github.presentation.user_info.adapter.CommitItemCallback
 import com.anthony.net.sample.github.presentation.user_info.adapter.CommitsAdapter
+import com.anthony.net.sample.github.presentation.user_info.viewmodel.CommitsState
 import com.anthony.net.sample.github.presentation.user_info.viewmodel.CommitsViewModel
 import org.koin.android.ext.android.inject
 
@@ -81,20 +82,27 @@ class CommitsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        commitsViewModel.onCommits.observe(viewLifecycleOwner) { commitsState ->
+        commitsViewModel.onCommitsState.observe(viewLifecycleOwner) { commitsState ->
 
-            if (commitsState.commits != null) {
+            when (commitsState) {
 
-                commitsAdapter?.submitList(commitsState.commits)
+                is CommitsState.Success -> {
 
-            } else {
+                    commitsAdapter?.submitList(commitsState.commits)
 
-                Toast.makeText(
-                    context,
-                    commitsState.error,
-                    Toast.LENGTH_SHORT
-                ).show()
+                }
+                is CommitsState.Error -> {
 
+                    val errorMessage = commitsState.errorMessage
+
+                    Toast.makeText(
+                        context,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                else -> Unit
             }
 
             dismissLoadingDialog()

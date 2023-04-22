@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
 
-    private val _onUser by lazy { MutableLiveData<LoginState>() }
+    private val _onLoginState by lazy { MutableLiveData<LoginState>() }
 
-    val onUser: LiveData<LoginState> = _onUser
+    val onLoginState: LiveData<LoginState> = _onLoginState
 
     fun getUser(userName: String) {
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
@@ -22,9 +22,9 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
 
                 when (result) {
 
-                    is Resource.Success -> _onUser.value = LoginState(result.data)
+                    is Resource.Success -> _onLoginState.value = LoginState.Success(result.data)
 
-                    is Resource.Error -> _onUser.value = LoginState(null, result.errorMessage)
+                    is Resource.Error -> _onLoginState.value = LoginState.Error(result.errorMessage)
 
                 }
 

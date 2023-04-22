@@ -1,10 +1,10 @@
-package com.anthony.net.sample.github.data.remote.api.login
+package com.anthony.net.sample.github.data.remote.service.login
 
 import com.anthony.net.sample.github.data.remote.dto.common.User
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface LoginApi {
+interface LoginService {
 
     /**
      * 取得 User

@@ -9,12 +9,12 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    factory { LoginRepositoryImpl(get()) }
+    single { LoginRepositoryImpl(get()) }
 
-    factory { CommitsRepositoryImpl(get()) }
+    single { CommitsRepositoryImpl(get()) }
 
-    factory { CollaboratorsRepositoryImpl(get()) }
+    single { CollaboratorsRepositoryImpl(get()) }
 
-    factory { UserInfoRepositoryImpl(get()) }
+    single { UserInfoRepositoryImpl(get()) }
 
 }

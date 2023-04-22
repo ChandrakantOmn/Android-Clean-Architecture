@@ -2,20 +2,20 @@ package com.anthony.net.sample.github.di
 
 
 import com.anthony.net.sample.github.data.remote.RetrofitBuilder.createService
-import com.anthony.net.sample.github.data.remote.api.login.LoginApi
-import com.anthony.net.sample.github.data.remote.api.user_info.CollaboratorsApi
-import com.anthony.net.sample.github.data.remote.api.user_info.CommitsApi
-import com.anthony.net.sample.github.data.remote.api.user_info.UserInfoApi
+import com.anthony.net.sample.github.data.remote.service.login.LoginService
+import com.anthony.net.sample.github.data.remote.service.user_info.CollaboratorsService
+import com.anthony.net.sample.github.data.remote.service.user_info.CommitsService
+import com.anthony.net.sample.github.data.remote.service.user_info.UserInfoService
 import org.koin.dsl.module
 
 val serviceModule = module {
 
-    factory<LoginApi> { createService() }
+    single<LoginService> { createService() }
 
-    factory<CommitsApi> { createService() }
+    single<CommitsService> { createService() }
 
-    factory<CollaboratorsApi> { createService() }
+    single<CollaboratorsService> { createService() }
 
-    factory<UserInfoApi> { createService() }
+    single<UserInfoService> { createService() }
 
 }

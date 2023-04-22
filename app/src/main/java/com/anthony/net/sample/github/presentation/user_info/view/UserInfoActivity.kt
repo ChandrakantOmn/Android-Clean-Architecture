@@ -8,6 +8,7 @@ import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
 import com.anthony.net.sample.github.presentation.base.BaseActivity
 import com.anthony.net.sample.github.presentation.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.presentation.user_info.adapter.RepositoryItemCallback
+import com.anthony.net.sample.github.presentation.user_info.viewmodel.UserInfoState
 import com.anthony.net.sample.github.presentation.user_info.viewmodel.UserInfoViewModel
 import org.koin.android.ext.android.inject
 
@@ -63,20 +64,27 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private fun initViewModel() {
 
-        userInfoViewModel.onRepositories.observe(this) { userInfoState ->
+        userInfoViewModel.onUserInfoState.observe(this) { userInfoState ->
 
-            if (userInfoState.repositories != null) {
+            when (userInfoState) {
 
-                repositoriesAdapter?.submitList(userInfoState.repositories)
+                is UserInfoState.Success -> {
 
-            } else {
+                    repositoriesAdapter?.submitList(userInfoState.repositories)
 
-                Toast.makeText(
-                    this@UserInfoActivity,
-                    userInfoState.error,
-                    Toast.LENGTH_SHORT
-                ).show()
+                }
+                is UserInfoState.Error -> {
 
+                    val errorMessage = userInfoState.errorMessage
+
+                    Toast.makeText(
+                        this,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                else -> Unit
             }
 
             dismissLoadingDialog()

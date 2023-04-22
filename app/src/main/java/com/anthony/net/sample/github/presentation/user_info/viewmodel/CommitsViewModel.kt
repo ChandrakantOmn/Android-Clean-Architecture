@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 
 class CommitsViewModel(private val commitsUseCase: CommitsUseCase) : BaseViewModel() {
 
-    private val _onCommits by lazy { MutableLiveData<CommitsState>() }
+    private val _onCommitsState by lazy { MutableLiveData<CommitsState>() }
 
-    val onCommits: LiveData<CommitsState> = _onCommits
+    val onCommitsState: LiveData<CommitsState> = _onCommitsState
 
     fun getCommits(userName: String, repoName: String) {
         viewModelScope.launch {
@@ -21,9 +21,10 @@ class CommitsViewModel(private val commitsUseCase: CommitsUseCase) : BaseViewMod
 
                 when (result) {
 
-                    is Resource.Success -> _onCommits.value = CommitsState(result.data)
+                    is Resource.Success -> _onCommitsState.value = CommitsState.Success(result.data)
 
-                    is Resource.Error -> _onCommits.value = CommitsState(null, result.errorMessage)
+                    is Resource.Error -> _onCommitsState.value =
+                        CommitsState.Error(result.errorMessage)
 
                 }
 

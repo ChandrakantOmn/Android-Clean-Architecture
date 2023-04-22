@@ -10,6 +10,7 @@ import com.anthony.net.sample.github.client.databinding.FragmentCollaboratorsBin
 import com.anthony.net.sample.github.presentation.base.BaseFragment
 import com.anthony.net.sample.github.presentation.user_info.adapter.CollaboratorItemCallback
 import com.anthony.net.sample.github.presentation.user_info.adapter.CollaboratorsAdapter
+import com.anthony.net.sample.github.presentation.user_info.viewmodel.CollaboratorsState
 import com.anthony.net.sample.github.presentation.user_info.viewmodel.CollaboratorsViewModel
 import org.koin.android.ext.android.inject
 
@@ -85,20 +86,27 @@ class CollaboratorsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner) { collaboratorsState ->
+        collaboratorsViewModel.onCollaboratorsState.observe(viewLifecycleOwner) { collaboratorsState ->
 
-            if (collaboratorsState.collaborators != null) {
+            when (collaboratorsState) {
 
-                collaboratorsAdapter?.submitList(collaboratorsState.collaborators)
+                is CollaboratorsState.Success -> {
 
-            } else {
+                    collaboratorsAdapter?.submitList(collaboratorsState.collaborators)
 
-                Toast.makeText(
-                    context,
-                    collaboratorsState.error,
-                    Toast.LENGTH_SHORT
-                ).show()
+                }
+                is CollaboratorsState.Error -> {
 
+                    val errorMessage = collaboratorsState.errorMessage
+
+                    Toast.makeText(
+                        context,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                else -> Unit
             }
 
             dismissLoadingDialog()

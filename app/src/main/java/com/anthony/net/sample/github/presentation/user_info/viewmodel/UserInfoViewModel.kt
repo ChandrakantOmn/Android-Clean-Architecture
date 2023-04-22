@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 
 class UserInfoViewModel(private val userInfoUseCase: UserInfoUseCase) : BaseViewModel() {
 
-    private val _onRepositories by lazy { MutableLiveData<UserInfoState>() }
+    private val _onUserInfoState by lazy { MutableLiveData<UserInfoState>() }
 
-    val onRepositories: LiveData<UserInfoState> = _onRepositories
+    val onUserInfoState: LiveData<UserInfoState> = _onUserInfoState
 
     fun getRepositories(loginName: String) {
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
@@ -22,10 +22,11 @@ class UserInfoViewModel(private val userInfoUseCase: UserInfoUseCase) : BaseView
 
                 when (result) {
 
-                    is Resource.Success -> _onRepositories.value = UserInfoState(result.data)
+                    is Resource.Success -> _onUserInfoState.value =
+                        UserInfoState.Success(result.data)
 
-                    is Resource.Error -> _onRepositories.value =
-                        UserInfoState(null, result.errorMessage)
+                    is Resource.Error -> _onUserInfoState.value =
+                        UserInfoState.Error(result.errorMessage)
 
                 }
 

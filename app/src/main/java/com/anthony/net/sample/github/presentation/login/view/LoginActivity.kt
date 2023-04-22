@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ActivityLoginBinding
 import com.anthony.net.sample.github.presentation.base.BaseActivity
+import com.anthony.net.sample.github.presentation.login.viewmodel.LoginState
 import com.anthony.net.sample.github.presentation.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.presentation.user_info.view.UserInfoActivity
 import org.koin.android.ext.android.inject
@@ -53,22 +54,29 @@ class LoginActivity : BaseActivity() {
 
     private fun initViewModel() {
 
-        loginViewModel.onUser.observe(this) { loginState ->
+        loginViewModel.onLoginState.observe(this) { loginState ->
 
-            if (loginState.user != null) {
+            when (loginState) {
 
-                val login = loginState.user.login
+                is LoginState.Success -> {
 
-                openUserInfoPage(login)
+                    val login = loginState.user?.login ?: return@observe
 
-            } else {
+                    openUserInfoPage(login)
 
-                Toast.makeText(
-                    this@LoginActivity,
-                    loginState.error,
-                    Toast.LENGTH_SHORT
-                ).show()
+                }
+                is LoginState.Error -> {
 
+                    val errorMessage = loginState.errorMessage
+
+                    Toast.makeText(
+                        this,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                else -> Unit
             }
 
             dismissLoadingDialog()

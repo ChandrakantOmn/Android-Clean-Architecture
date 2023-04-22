@@ -1,10 +1,10 @@
-package com.anthony.net.sample.github.data.remote.api.user_info
+package com.anthony.net.sample.github.data.remote.service.user_info
 
 import com.anthony.net.sample.github.data.remote.dto.user_info.Commit
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface CommitsApi {
+interface CommitsService {
 
     /**
      * 取得提交的訊息列表
