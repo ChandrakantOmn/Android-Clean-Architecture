@@ -26,7 +26,7 @@ class GithubClientApplication : MultiDexApplication() {
 
             androidContext(this@GithubClientApplication)
 
-            modules(listOf(useCaseModule, serviceModule, viewModelModule, repositoryModule))
+            modules(listOf(repositoryModule, useCaseModule, serviceModule, viewModelModule))
 
         }
 
