@@ -1,20 +1,42 @@
 # Android-Clean-Architecture
-
-# Introduction
 This is a sample github app that how to architect an android application using clean architecture.
 
-## Architecture, Languages, libraries and tools used
-- MVVM
+## Requirements
+- minSdkVersion: 21
+- targetSdkVersion: 33
+
+## Architecture
+This app follows the `Clean Architecture` and `MVVM design patterns`. 
+
+### Why used Clean Architecture ?
+Clean Architecture is a software design principle that aims to make systems more maintainable, testable, and scalable by organizing code into separate layers, each with a specific responsibility.
+
+### Why used MVVM ?
+MVVM stands for Model-View-ViewModel, which is an architectural pattern used in software engineering. It is designed to separate the user interface (view) from the data and business logic (model), and introduce a new component called the ViewModel.
+
+## Languages
 - Kotlin
 - Kotlin Flow
 - Coruotines
-- Koin
-- kotlinx-serialization
-- retrofit2
-- LiveData
-- Coil
-- viewPager2
-- Preferences DataStore
+
+## Libraries
+
+- Network:
+  - okhttp3-logging-interceptor: `4.8.0`
+  - retrofit2: `2.9.0`
+  - retrofit2-kotlinx-serialization-converter: `0.8.0`
+- Dependency Injection:
+  - koin-android: `3.3.0`
+- Serialization:
+  - kotlinx-serialization-json: `1.3.3`
+- ViewModel:
+  - lifecycle-viewmodel-ktx: `2.5.1`
+- LiveData:
+  - lifecycle-livedata-ktx: `2.5.1`
+- Image Loader:
+  - coil: `2.2.2`
+- viewPager2: `1.0.0`
+- Preferences DataStore: `1.0.0`
 
 # License
 ```
