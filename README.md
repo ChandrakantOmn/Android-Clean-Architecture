@@ -30,9 +30,9 @@ MVVM stands for Model-View-ViewModel, which is an architectural pattern used in 
 - Serialization:
   - kotlinx-serialization-json: `1.3.3`
 - ViewModel:
-  - lifecycle-viewmodel-ktx: `2.5.1`
+  - lifecycle-viewmodel-ktx: `2.6.1`
 - LiveData:
-  - lifecycle-livedata-ktx: `2.5.1`
+  - lifecycle-livedata-ktx: `2.6.1`
 - Image Loader:
   - coil: `2.2.2`
 - viewPager2: `1.0.0`
