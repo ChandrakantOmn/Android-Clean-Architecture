@@ -3,13 +3,13 @@ package com.anthony.net.sample.github.data.remote.dto.common
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class User(
+data class UserDto(
     val avatar_url: String,
-    val bio: String?=null,
+    val bio: String? = null,
     val blog: String,
-    val company: String?=null,
+    val company: String? = null,
     val created_at: String,
-    val email: String?=null,
+    val email: String? = null,
     val events_url: String,
     val followers: Int,
     val followers_url: String,

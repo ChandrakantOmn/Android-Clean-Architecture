@@ -1,7 +1,7 @@
 package com.anthony.net.sample.github.presentation.user_info.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.anthony.net.sample.github.data.remote.dto.login.Repository
+import com.anthony.net.sample.github.domain.entity.login.Repository
 
 class RepositoryItemCallback : DiffUtil.ItemCallback<Repository>() {
 

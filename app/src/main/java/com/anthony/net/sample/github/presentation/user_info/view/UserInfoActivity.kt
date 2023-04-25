@@ -26,6 +26,16 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private val userInfoViewModel: UserInfoViewModel by inject()
 
+    override fun onStart() {
+        super.onStart()
+        initViewModel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        userInfoViewModel.onUserInfoState.removeObservers(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,8 +44,6 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
         setContentView(viewBinding.root)
 
         initView()
-
-        initViewModel()
 
     }
 
@@ -56,8 +64,6 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
         viewBinding.repositoriesRecyclerView.adapter = repositoriesAdapter
 
-        showLoadingDialog()
-
         userInfoViewModel.getRepositories(loginName)
 
     }
@@ -68,11 +74,20 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
             when (userInfoState) {
 
+                is UserInfoState.Loading -> {
+
+                    showLoadingDialog()
+
+                    return@observe
+
+                }
+
                 is UserInfoState.Success -> {
 
                     repositoriesAdapter?.submitList(userInfoState.repositories)
 
                 }
+
                 is UserInfoState.Error -> {
 
                     val errorMessage = userInfoState.errorMessage

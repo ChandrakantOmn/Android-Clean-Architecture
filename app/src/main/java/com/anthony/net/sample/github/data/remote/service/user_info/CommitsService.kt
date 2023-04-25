@@ -1,6 +1,6 @@
 package com.anthony.net.sample.github.data.remote.service.user_info
 
-import com.anthony.net.sample.github.data.remote.dto.user_info.Commit
+import com.anthony.net.sample.github.data.remote.dto.user_info.CommitDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,6 +13,6 @@ interface CommitsService {
     suspend fun getCommits(
         @Path("owner") owner: String,
         @Path("repo") repo: String
-    ): List<Commit>
+    ): List<CommitDto>
 
 }

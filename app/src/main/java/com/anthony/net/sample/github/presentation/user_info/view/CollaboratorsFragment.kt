@@ -42,6 +42,16 @@ class CollaboratorsFragment : BaseFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        initViewModel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        collaboratorsViewModel.onCollaboratorsState.removeObservers(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,10 +67,6 @@ class CollaboratorsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-
-        initViewModel()
-
-        showLoadingDialog()
 
         val userName = arguments?.getString(USER_NAME) ?: ""
 
@@ -90,11 +96,20 @@ class CollaboratorsFragment : BaseFragment() {
 
             when (collaboratorsState) {
 
+                is CollaboratorsState.Loading -> {
+
+                    showLoadingDialog()
+
+                    return@observe
+
+                }
+
                 is CollaboratorsState.Success -> {
 
                     collaboratorsAdapter?.submitList(collaboratorsState.collaborators)
 
                 }
+
                 is CollaboratorsState.Error -> {
 
                     val errorMessage = collaboratorsState.errorMessage

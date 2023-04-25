@@ -1,20 +1,20 @@
 package com.anthony.net.sample.github.di
 
 
-import UserInfoUseCase
-import com.anthony.net.sample.github.domain.usecase.login.LoginUseCase
-import com.anthony.net.sample.github.domain.usecase.user_info.CollaboratorsUseCase
-import com.anthony.net.sample.github.domain.usecase.user_info.CommitsUseCase
+import GetUserInfoUseCase
+import com.anthony.net.sample.github.domain.usecase.login.GetLoginUseCase
+import com.anthony.net.sample.github.domain.usecase.user_info.GetCollaboratorsUseCase
+import com.anthony.net.sample.github.domain.usecase.user_info.GetCommitsUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
 
-    single { LoginUseCase(get()) }
+    single { GetLoginUseCase(get()) }
 
-    single { CommitsUseCase(get()) }
+    single { GetCommitsUseCase(get()) }
 
-    single { CollaboratorsUseCase(get()) }
+    single { GetCollaboratorsUseCase(get()) }
 
-    single { UserInfoUseCase(get()) }
+    single { GetUserInfoUseCase(get()) }
 
 }

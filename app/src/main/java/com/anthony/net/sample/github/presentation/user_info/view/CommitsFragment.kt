@@ -42,6 +42,16 @@ class CommitsFragment : BaseFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        initViewModel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        commitsViewModel.onCommitsState.removeObservers(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,10 +60,6 @@ class CommitsFragment : BaseFragment() {
         viewBinding = FragmentCommitsBinding.inflate(inflater, container, false)
 
         initView()
-
-        initViewModel()
-
-        showLoadingDialog()
 
         val userName = arguments?.getString(CollaboratorsFragment.USER_NAME) ?: ""
 
@@ -86,11 +92,20 @@ class CommitsFragment : BaseFragment() {
 
             when (commitsState) {
 
+                is CommitsState.Loading -> {
+
+                    showLoadingDialog()
+
+                    return@observe
+
+                }
+
                 is CommitsState.Success -> {
 
                     commitsAdapter?.submitList(commitsState.commits)
 
                 }
+
                 is CommitsState.Error -> {
 
                     val errorMessage = commitsState.errorMessage
@@ -102,7 +117,7 @@ class CommitsFragment : BaseFragment() {
                     ).show()
 
                 }
-                else -> Unit
+
             }
 
             dismissLoadingDialog()

@@ -9,7 +9,8 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemRepositoryBinding
-import com.anthony.net.sample.github.data.remote.dto.login.Repository
+import com.anthony.net.sample.github.domain.entity.login.Repository
+
 class RepositoriesAdapter(
     repositoryItemCallback: RepositoryItemCallback,
     private val onRepositoryItemClick: OnRepositoryItemClick
@@ -47,24 +48,24 @@ class RepositoriesAdapter(
 
             val context = itemView.context
 
-            viewBinding.userIcon.load(item.owner.avatar_url) {
+            viewBinding.userIcon.load(item.avatarUrl) {
                 crossfade(true)
                 placeholder(R.drawable.git_icon)
                 transformations(CircleCropTransformation())
             }
 
-            viewBinding.repositoryStar.text = item.stargazers_count.toString()
+            viewBinding.repositoryStar.text = item.stargazersCount.toString()
 
-            viewBinding.repositoryBranch.text = item.forks_count.toString()
+            viewBinding.repositoryBranch.text = item.forksCount.toString()
 
-            viewBinding.repositoryOwner.text = item.owner.login
+            viewBinding.repositoryOwner.text = item.repositoryOwner
 
-            viewBinding.repositoryName.text = item.name
+            viewBinding.repositoryName.text = item.repositoryName
 
             viewBinding.repositoryDescription.text =
-                item.description ?: context.getString(R.string.no_description)
+                item.repositoryDescription
 
-            viewBinding.repositoryLanguage.text = item.language
+            viewBinding.repositoryLanguage.text = item.repositoryLanguage
 
         }
 

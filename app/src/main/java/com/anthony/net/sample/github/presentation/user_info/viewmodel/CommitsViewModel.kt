@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anthony.net.sample.github.data.remote.Resource
-import com.anthony.net.sample.github.domain.usecase.user_info.CommitsUseCase
+import com.anthony.net.sample.github.domain.usecase.user_info.GetCommitsUseCase
 import com.anthony.net.sample.github.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class CommitsViewModel(private val commitsUseCase: CommitsUseCase) : BaseViewModel() {
+class CommitsViewModel(private val getCommitsUseCase: GetCommitsUseCase) : BaseViewModel() {
 
     private val _onCommitsState by lazy { MutableLiveData<CommitsState>() }
 
@@ -17,9 +17,11 @@ class CommitsViewModel(private val commitsUseCase: CommitsUseCase) : BaseViewMod
     fun getCommits(userName: String, repoName: String) {
         viewModelScope.launch {
 
-            commitsUseCase.getCommits(userName, repoName).collect { result ->
+            getCommitsUseCase(userName, repoName).collect { result ->
 
                 when (result) {
+
+                    is Resource.Loading -> _onCommitsState.value = CommitsState.Loading
 
                     is Resource.Success -> _onCommitsState.value = CommitsState.Success(result.data)
 

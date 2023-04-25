@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Commit(
+data class CommitDto(
     val author: Author? = null,
     val comments_url: String,
     val commit: CommitInfo,

@@ -4,7 +4,7 @@ import com.anthony.net.sample.github.data.remote.dto.common.License
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Repository(
+data class RepositoryDto(
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,

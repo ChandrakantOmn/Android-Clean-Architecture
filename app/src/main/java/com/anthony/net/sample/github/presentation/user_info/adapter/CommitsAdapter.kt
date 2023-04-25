@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anthony.net.sample.github.client.databinding.ItemCommitBinding
-import com.anthony.net.sample.github.data.remote.dto.user_info.Commit
+import com.anthony.net.sample.github.domain.entity.user_info.Commit
 
 class CommitsAdapter(
     commitItemCallback: CommitItemCallback,
@@ -28,11 +28,11 @@ class CommitsAdapter(
 
         fun bind(item: Commit) {
 
-            viewBinding.userName.text = item.commit.committer.name
+            viewBinding.userName.text = item.userName
 
-            viewBinding.date.text = item.commit.committer.date
+            viewBinding.date.text = item.date
 
-            viewBinding.message.text = item.commit.message
+            viewBinding.message.text = item.message
 
         }
 

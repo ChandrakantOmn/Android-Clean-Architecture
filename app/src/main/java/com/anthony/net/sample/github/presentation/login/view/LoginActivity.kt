@@ -17,6 +17,16 @@ class LoginActivity : BaseActivity() {
 
     private val loginViewModel: LoginViewModel by inject()
 
+    override fun onStart() {
+        super.onStart()
+        initViewModel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        loginViewModel.onLoginState.removeObservers(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,8 +35,6 @@ class LoginActivity : BaseActivity() {
         setContentView(viewBinding.root)
 
         initView()
-
-        initViewModel()
 
     }
 
@@ -44,8 +52,6 @@ class LoginActivity : BaseActivity() {
 
             }
 
-            showLoadingDialog()
-
             loginViewModel.getUser(userName)
 
         }
@@ -58,6 +64,14 @@ class LoginActivity : BaseActivity() {
 
             when (loginState) {
 
+                is LoginState.Loading -> {
+
+                    showLoadingDialog()
+
+                    return@observe
+
+                }
+
                 is LoginState.Success -> {
 
                     val login = loginState.user?.login ?: return@observe
@@ -65,6 +79,7 @@ class LoginActivity : BaseActivity() {
                     openUserInfoPage(login)
 
                 }
+
                 is LoginState.Error -> {
 
                     val errorMessage = loginState.errorMessage
@@ -94,6 +109,8 @@ class LoginActivity : BaseActivity() {
         intent.setClass(this, UserInfoActivity::class.java)
 
         startActivity(intent)
+
+        finish()
 
     }
 

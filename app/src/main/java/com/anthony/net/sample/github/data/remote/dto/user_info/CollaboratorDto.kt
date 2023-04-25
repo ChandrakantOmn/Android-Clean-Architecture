@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Collaborator(
+data class CollaboratorDto(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,

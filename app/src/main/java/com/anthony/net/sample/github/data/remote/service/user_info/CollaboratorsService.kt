@@ -1,6 +1,6 @@
 package com.anthony.net.sample.github.data.remote.service.user_info
 
-import com.anthony.net.sample.github.data.remote.dto.user_info.Collaborator
+import com.anthony.net.sample.github.data.remote.dto.user_info.CollaboratorDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,7 +13,7 @@ interface CollaboratorsService {
     suspend fun getCollaborators(
         @Path("owner") owner: String,
         @Path("repo") repo: String
-    ): List<Collaborator>
+    ): List<CollaboratorDto>
 
 
 }
