@@ -17,7 +17,10 @@ class CollaboratorsViewModel(private val getCollaboratorsUseCase: GetCollaborato
 
     fun getCollaborators(userName: String, repoName: String) {
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
-        viewModelScope.launch {
+        viewModelScope.launch(getCoroutineExceptionHandler {
+            _onCollaboratorsState.value =
+                CollaboratorsState.Error(it.localizedMessage)
+        }) {
 
             getCollaboratorsUseCase(userName, repoName).collect { result ->
 

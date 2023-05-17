@@ -15,7 +15,10 @@ class UserInfoViewModel(private val getUserInfoUseCase: GetUserInfoUseCase) : Ba
     val onUserInfoState: LiveData<UserInfoState> = _onUserInfoState
     fun getRepositories(loginName: String) {
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
-        viewModelScope.launch {
+        viewModelScope.launch(getCoroutineExceptionHandler {
+            _onUserInfoState.value =
+                UserInfoState.Error(it.localizedMessage)
+        }) {
 
             getUserInfoUseCase(loginName).collect { result ->
 

@@ -15,7 +15,10 @@ class CommitsViewModel(private val getCommitsUseCase: GetCommitsUseCase) : BaseV
     val onCommitsState: LiveData<CommitsState> = _onCommitsState
 
     fun getCommits(userName: String, repoName: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(getCoroutineExceptionHandler {
+            _onCommitsState.value =
+                CommitsState.Error(it.localizedMessage)
+        }) {
 
             getCommitsUseCase(userName, repoName).collect { result ->
 
