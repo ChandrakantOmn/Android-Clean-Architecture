@@ -1,9 +1,10 @@
 package com.anthony.net.sample.github.data.repository.user_info
 
-import com.anthony.net.sample.github.data.remote.Resource
-import com.anthony.net.sample.github.data.remote.dto.login.RepositoryDto
+import com.anthony.net.sample.github.data.remote.model.login.RepositoryDto
+import com.anthony.net.sample.github.data.remote.network.Resource
 import com.anthony.net.sample.github.data.remote.service.user_info.UserInfoService
-import com.anthony.net.sample.github.domain.entity.login.Repository
+import com.anthony.net.sample.github.domain.model.login.Repository
+import com.anthony.net.sample.github.domain.repository.user_info.UserInfoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

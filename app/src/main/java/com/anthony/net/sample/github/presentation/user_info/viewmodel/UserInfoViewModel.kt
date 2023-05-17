@@ -4,7 +4,7 @@ import GetUserInfoUseCase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.anthony.net.sample.github.data.remote.Resource
+import com.anthony.net.sample.github.data.remote.network.Resource
 import com.anthony.net.sample.github.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch
 

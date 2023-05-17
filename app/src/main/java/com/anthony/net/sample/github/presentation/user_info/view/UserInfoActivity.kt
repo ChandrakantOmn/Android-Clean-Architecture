@@ -26,16 +26,6 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private val userInfoViewModel: UserInfoViewModel by inject()
 
-    override fun onStart() {
-        super.onStart()
-        initViewModel()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        userInfoViewModel.onUserInfoState.removeObservers(this)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,6 +34,8 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
         setContentView(viewBinding.root)
 
         initView()
+
+        initViewModel()
 
     }
 

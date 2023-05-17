@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ActivityRepositoryBinding
-import com.anthony.net.sample.github.domain.entity.login.Repository
+import com.anthony.net.sample.github.domain.model.login.Repository
 import com.anthony.net.sample.github.presentation.user_info.adapter.RepositoryViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 

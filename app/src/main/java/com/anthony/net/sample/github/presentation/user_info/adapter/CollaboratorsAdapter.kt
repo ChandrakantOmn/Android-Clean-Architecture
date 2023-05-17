@@ -8,7 +8,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCollaboratorBinding
-import com.anthony.net.sample.github.domain.entity.user_info.Collaborator
+import com.anthony.net.sample.github.domain.model.user_info.Collaborator
 
 class CollaboratorsAdapter(
     collaboratorItemCallback: CollaboratorItemCallback,

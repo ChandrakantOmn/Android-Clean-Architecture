@@ -17,16 +17,6 @@ class LoginActivity : BaseActivity() {
 
     private val loginViewModel: LoginViewModel by inject()
 
-    override fun onStart() {
-        super.onStart()
-        initViewModel()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        loginViewModel.onLoginState.removeObservers(this)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +25,8 @@ class LoginActivity : BaseActivity() {
         setContentView(viewBinding.root)
 
         initView()
+
+        initViewModel()
 
     }
 
@@ -91,6 +83,7 @@ class LoginActivity : BaseActivity() {
                     ).show()
 
                 }
+
                 else -> Unit
             }
 

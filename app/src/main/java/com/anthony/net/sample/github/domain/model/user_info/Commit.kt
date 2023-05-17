@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.domain.entity.user_info
+package com.anthony.net.sample.github.domain.model.user_info
 
 import kotlinx.serialization.Serializable
 

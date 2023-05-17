@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.data.remote.dto.common
+package com.anthony.net.sample.github.data.remote.model.common
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.domain.entity.login
+package com.anthony.net.sample.github.domain.model.login
 
 import kotlinx.serialization.Serializable
 

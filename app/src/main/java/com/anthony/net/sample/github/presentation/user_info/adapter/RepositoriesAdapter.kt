@@ -9,7 +9,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemRepositoryBinding
-import com.anthony.net.sample.github.domain.entity.login.Repository
+import com.anthony.net.sample.github.domain.model.login.Repository
 
 class RepositoriesAdapter(
     repositoryItemCallback: RepositoryItemCallback,

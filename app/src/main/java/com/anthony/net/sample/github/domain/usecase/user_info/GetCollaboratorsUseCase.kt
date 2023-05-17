@@ -1,9 +1,9 @@
 package com.anthony.net.sample.github.domain.usecase.user_info
 
 
-import com.anthony.net.sample.github.data.remote.Resource
-import com.anthony.net.sample.github.data.repository.user_info.CollaboratorsRepository
-import com.anthony.net.sample.github.domain.entity.user_info.Collaborator
+import com.anthony.net.sample.github.data.remote.network.Resource
+import com.anthony.net.sample.github.domain.model.user_info.Collaborator
+import com.anthony.net.sample.github.domain.repository.user_info.CollaboratorsRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetCollaboratorsUseCase(private val collaboratorsRepository: CollaboratorsRepository) {

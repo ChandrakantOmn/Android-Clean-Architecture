@@ -1,6 +1,6 @@
 package com.anthony.net.sample.github.presentation.login.viewmodel
 
-import com.anthony.net.sample.github.domain.entity.common.User
+import com.anthony.net.sample.github.domain.model.common.User
 
 sealed class LoginState {
     data class Success(val user: User?) : LoginState()

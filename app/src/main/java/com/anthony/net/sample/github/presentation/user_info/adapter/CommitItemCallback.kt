@@ -1,7 +1,7 @@
 package com.anthony.net.sample.github.presentation.user_info.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.anthony.net.sample.github.domain.entity.user_info.Commit
+import com.anthony.net.sample.github.domain.model.user_info.Commit
 
 class CommitItemCallback : DiffUtil.ItemCallback<Commit>() {
 

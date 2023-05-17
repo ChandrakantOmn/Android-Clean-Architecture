@@ -42,16 +42,6 @@ class CommitsFragment : BaseFragment() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        initViewModel()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        commitsViewModel.onCommitsState.removeObservers(this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +50,8 @@ class CommitsFragment : BaseFragment() {
         viewBinding = FragmentCommitsBinding.inflate(inflater, container, false)
 
         initView()
+
+        initViewModel()
 
         val userName = arguments?.getString(CollaboratorsFragment.USER_NAME) ?: ""
 

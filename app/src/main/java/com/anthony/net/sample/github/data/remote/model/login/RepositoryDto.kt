@@ -1,6 +1,6 @@
-package com.anthony.net.sample.github.data.remote.dto.login
+package com.anthony.net.sample.github.data.remote.model.login
 
-import com.anthony.net.sample.github.data.remote.dto.common.License
+import com.anthony.net.sample.github.data.remote.model.common.License
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -1,6 +1,6 @@
 package com.anthony.net.sample.github.data.remote.service.user_info
 
-import com.anthony.net.sample.github.data.remote.dto.login.RepositoryDto
+import com.anthony.net.sample.github.data.remote.model.login.RepositoryDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

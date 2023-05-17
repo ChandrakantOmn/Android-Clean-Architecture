@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.data.remote
+package com.anthony.net.sample.github.data.remote.network
 
 import kotlinx.serialization.decodeFromString
 import retrofit2.HttpException
@@ -27,7 +27,7 @@ fun <T> handleException(e: Exception): Resource<T> {
     return when (e) {
         is HttpException -> {
             val errorMessage = e.response()?.errorBody()?.let {
-                RetrofitBuilder.json.decodeFromString<com.anthony.net.sample.github.data.remote.dto.common.Error>(
+                RetrofitBuilder.json.decodeFromString<com.anthony.net.sample.github.data.remote.model.common.Error>(
                     it.string()
                 ).message
             } ?: "An unexpected error occurred"

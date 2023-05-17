@@ -3,7 +3,7 @@ package com.anthony.net.sample.github.presentation.user_info.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.anthony.net.sample.github.data.remote.Resource
+import com.anthony.net.sample.github.data.remote.network.Resource
 import com.anthony.net.sample.github.domain.usecase.user_info.GetCommitsUseCase
 import com.anthony.net.sample.github.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch

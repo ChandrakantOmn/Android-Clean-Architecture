@@ -1,6 +1,6 @@
-import com.anthony.net.sample.github.data.remote.Resource
-import com.anthony.net.sample.github.data.repository.user_info.UserInfoRepository
-import com.anthony.net.sample.github.domain.entity.login.Repository
+import com.anthony.net.sample.github.data.remote.network.Resource
+import com.anthony.net.sample.github.domain.model.login.Repository
+import com.anthony.net.sample.github.domain.repository.user_info.UserInfoRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetUserInfoUseCase(private val userInfoRepository: UserInfoRepository) {

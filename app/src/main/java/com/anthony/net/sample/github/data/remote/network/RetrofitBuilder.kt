@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.data.remote
+package com.anthony.net.sample.github.data.remote.network
 
 
 import com.anthony.net.sample.github.client.BuildConfig

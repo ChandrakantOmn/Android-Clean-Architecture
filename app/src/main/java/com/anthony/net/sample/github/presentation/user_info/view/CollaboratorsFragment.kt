@@ -42,16 +42,6 @@ class CollaboratorsFragment : BaseFragment() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        initViewModel()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        collaboratorsViewModel.onCollaboratorsState.removeObservers(this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +57,8 @@ class CollaboratorsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+
+        initViewModel()
 
         val userName = arguments?.getString(USER_NAME) ?: ""
 

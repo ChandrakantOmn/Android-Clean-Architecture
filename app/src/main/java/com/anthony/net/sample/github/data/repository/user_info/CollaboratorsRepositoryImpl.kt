@@ -1,9 +1,10 @@
 package com.anthony.net.sample.github.data.repository.user_info
 
-import com.anthony.net.sample.github.data.remote.Resource
-import com.anthony.net.sample.github.data.remote.dto.user_info.CollaboratorDto
+import com.anthony.net.sample.github.data.remote.model.user_info.CollaboratorDto
+import com.anthony.net.sample.github.data.remote.network.Resource
 import com.anthony.net.sample.github.data.remote.service.user_info.CollaboratorsService
-import com.anthony.net.sample.github.domain.entity.user_info.Collaborator
+import com.anthony.net.sample.github.domain.model.user_info.Collaborator
+import com.anthony.net.sample.github.domain.repository.user_info.CollaboratorsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

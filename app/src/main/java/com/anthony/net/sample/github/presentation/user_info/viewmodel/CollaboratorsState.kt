@@ -1,6 +1,6 @@
 package com.anthony.net.sample.github.presentation.user_info.viewmodel
 
-import com.anthony.net.sample.github.domain.entity.user_info.Collaborator
+import com.anthony.net.sample.github.domain.model.user_info.Collaborator
 
 
 sealed class CollaboratorsState {

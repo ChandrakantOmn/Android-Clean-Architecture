@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.domain.entity.common
+package com.anthony.net.sample.github.domain.model.common
 
 import kotlinx.serialization.Serializable
 
