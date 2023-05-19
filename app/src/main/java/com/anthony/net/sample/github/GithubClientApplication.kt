@@ -1,6 +1,7 @@
 package com.anthony.net.sample.github
 
 import androidx.multidex.MultiDexApplication
+import com.anthony.net.sample.github.di.networkModule
 import com.anthony.net.sample.github.di.repositoryModule
 import com.anthony.net.sample.github.di.serviceModule
 import com.anthony.net.sample.github.di.useCaseModule
@@ -26,7 +27,15 @@ class GithubClientApplication : MultiDexApplication() {
 
             androidContext(this@GithubClientApplication)
 
-            modules(listOf(repositoryModule, useCaseModule, serviceModule, viewModelModule))
+            modules(
+                listOf(
+                    networkModule,
+                    repositoryModule,
+                    useCaseModule,
+                    serviceModule,
+                    viewModelModule
+                )
+            )
 
         }
 

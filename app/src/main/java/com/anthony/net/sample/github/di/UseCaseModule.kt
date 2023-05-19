@@ -9,12 +9,12 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
 
-    single { GetLoginUseCase(get()) }
+    single(createdAtStart = false) { GetLoginUseCase(get()) }
 
-    single { GetCommitsUseCase(get()) }
+    single(createdAtStart = false) { GetCommitsUseCase(get()) }
 
-    single { GetCollaboratorsUseCase(get()) }
+    single(createdAtStart = false) { GetCollaboratorsUseCase(get()) }
 
-    single { GetUserInfoUseCase(get()) }
+    single(createdAtStart = false) { GetUserInfoUseCase(get()) }
 
 }

@@ -13,12 +13,12 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    single<LoginRepository> { LoginRepositoryImpl(get()) }
+    single<LoginRepository>(createdAtStart = false) { LoginRepositoryImpl(get()) }
 
-    single<CommitsRepository> { CommitsRepositoryImpl(get()) }
+    single<CommitsRepository>(createdAtStart = false) { CommitsRepositoryImpl(get()) }
 
-    single<CollaboratorsRepository> { CollaboratorsRepositoryImpl(get()) }
+    single<CollaboratorsRepository>(createdAtStart = false) { CollaboratorsRepositoryImpl(get()) }
 
-    single<UserInfoRepository> { UserInfoRepositoryImpl(get()) }
+    single<UserInfoRepository>(createdAtStart = false) { UserInfoRepositoryImpl(get()) }
 
 }
