@@ -20,13 +20,9 @@ class GithubClientApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
         context = this
-
         startKoin {
-
             androidContext(this@GithubClientApplication)
-
             modules(
                 listOf(
                     networkModule,

@@ -6,9 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CollaboratorsRepository {
 
-    suspend fun getCollaborators(
-        owner: String, repo: String
-    ): Flow<Resource<List<Collaborator>>>
+    suspend fun getCollaborators(owner: String, repo: String): Flow<Resource<List<Collaborator>>>
 
 
 }

@@ -2,6 +2,7 @@ package com.anthony.net.sample.github.di
 
 import com.anthony.net.sample.github.client.BuildConfig
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -13,6 +14,7 @@ import retrofit2.Retrofit
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
+@OptIn(ExperimentalSerializationApi::class)
 val networkModule = module {
 
     single {
